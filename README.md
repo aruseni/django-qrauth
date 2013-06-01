@@ -3,7 +3,11 @@ What is django-qrauth?
 
 django-qrauth allows you to easily spice up your website with instant user authentication: once a user has signed in on their Mac or PC, they can pick up their smartphone (or tablet, iPod, etc: actually, anything that has Internet access, a camera and a QR code scanning application should work), scan a QR code (which appears on the display after the user clicks the corresponding link) and immediately sign in on their smartphone or other mobile device they use (so they don’t have to enter the site address, nor their login/email, nor password).
 
+![A screenshot: scanning an authentication QR code on an Android phone](example.png "Scanning an authentication QR code on an Android phone")
+
 You can see the detailed walkthrough in [this screencast](http://www.youtube.com/watch?v=6ob3oR_Frhk) (in Russian) and in [this blog post](http://habrahabr.ru/post/181093/) (also in Russian).
+
+Visit [Background Dating](http://backgrounddating.com/) to see this in action.
 
 Installation
 ============
