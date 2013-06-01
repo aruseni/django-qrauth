@@ -29,10 +29,22 @@ AUTH_QR_CODE_REDIRECT_URL = getattr(
     "/"
 )
 
-@login_required
-def qr_code_page(request):
-    r = redis.StrictRedis()
+AUTH_QR_CODE_REDIS_KWARGS = getattr(
+    settings,
+    "AUTH_QR_CODE_REDIS_KWARGS",
+    {}
+)
 
+def uses_redis(func):
+    def wrapper(*args, **kwargs):
+        kwargs["r"] = redis.StrictRedis(**AUTH_QR_CODE_REDIS_KWARGS)
+        return func(*args, **kwargs)
+
+    return wrapper
+
+@login_required
+@uses_redis
+def qr_code_page(request, r=None):
     auth_code = generate_random_string(50)
     auth_code_hash = salted_hash(auth_code)
 
@@ -47,9 +59,8 @@ def qr_code_page(request):
                               context_instance=RequestContext(request))
 
 @login_required
-def qr_code_picture(request, auth_code):
-    r = redis.StrictRedis()
-
+@uses_redis
+def qr_code_picture(request, auth_code, r=None):
     auth_code_hash = salted_hash(auth_code)
 
     user_id = r.get("".join(["qrauth_", auth_code_hash]))
@@ -72,9 +83,8 @@ def qr_code_picture(request, auth_code):
     img.save(response, "PNG")
     return response
 
-def login_view(request, auth_code_hash):
-    r = redis.StrictRedis()
-
+@uses_redis
+def login_view(request, auth_code_hash, r=None):
     redis_key = "".join(["qrauth_", auth_code_hash])
 
     user_id = r.get(redis_key)

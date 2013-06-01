@@ -81,6 +81,14 @@ If you want to specify the page where the user should be redirected after they s
 
 By default, the user is redirected to "/" (which is usually the index page).
 
+If you need to specify custom Redis connection settings, use can use the AUTH_QR_CODE_REDIS_KWARGS setting. It is a dictionary of keyword arguments that are passed to the redis.StrictRedis class when initializing Redis connections. For example:
+
+    AUTH_QR_CODE_REDIS_KWARGS = {
+        "host": "localhost",
+        "port": 6379,
+        "db": 0,
+    }
+
 Also, make sure that [LOGIN_URL](https://docs.djangoproject.com/en/dev/ref/settings/#login-url) has a correct value. Otherwise, users can be redirected to a page that does not exist (for example, if someone who is not authenticated tries to open the page with the QR code).
 
 How to test
