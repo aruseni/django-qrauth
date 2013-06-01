@@ -14,5 +14,5 @@ setup(
                  ' sign in to the website on their mobile devices'),
     long_description=open('README.md').read()[:-1],
     zip_safe=False,
-    install_requires=['qrcode', 'redis'],
+    install_requires=['qrcode', 'redis', 'PIL'],
 )

@@ -52,8 +52,8 @@ Open your templates directory and add the following templates: qrauth/invalid_co
     <div class="qr_code">
         <h1>Authentication QR code</h1>
         <p>Scan this QR code to instantly sign in to the website on your mobile device (a smartphone, a tablet, etc):</p>
-        <div><img src="{% url auth_qr_code auth_code %}" alt="QR"></div>
-        <p>Every generated QR code only works once and only for 5 minutes. If you need another QR code, just open <a href="{% url qr_code_page %}">this page</a> again.</p>
+        <div><img src="{% url "auth_qr_code" auth_code %}" alt="QR"></div>
+        <p>Every generated QR code only works once and only for 5 minutes. If you need another QR code, just open <a href="{% url "qr_code_page" %}">this page</a> again.</p>
     </div>
     {% endblock %}
 

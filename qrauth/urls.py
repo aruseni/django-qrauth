@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic.base import TemplateView
 
 urlpatterns = patterns('qrauth.views',
     url(
@@ -14,8 +14,9 @@ urlpatterns = patterns('qrauth.views',
     ),
     url(
         r'invalid_code/$',
-        direct_to_template,
-        {'template': 'qrauth/invalid_code.html'},
+        TemplateView.as_view(
+            template_name='qrauth/invalid_code.html'
+        ),
         name='invalid_auth_code'
     ),
     url(
