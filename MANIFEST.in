@@ -1,0 +1,2 @@
+include LICENCE.md README.md MANIFEST.in
+recursive-include qrauth *.py
