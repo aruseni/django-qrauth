@@ -1,4 +1,4 @@
-Copyright (c) 2013, aruseni
+Copyright (c) 2013, aruseni<br/>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
