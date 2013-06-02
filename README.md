@@ -104,7 +104,20 @@ If you don’t have the “sites” framework enabled, the current site’s doma
 
 Now it’s time to try the QR code authentication. Make sure that you are logged in, browse to /qr/ (or use other path if you have specified something else in your root urlconf), pick up your mobile device and try to scan it.
 
+Security concerns
+=================
+
+1. If there are XSS vulnerabilities on the website, an attacker could be able to use iframes (at least if you haven’t set the [X-Frame-Options](https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options) header to DENY) or XMLHttpRequest to retrieve an authentication QR code and use it to log into the user’s account.
+
+2. Even without any XSS, it is possible that someone who has access to the user’s session (for example, if the user is still logged in on the website, but is away from the computer) could scan the QR code and, therefore, log into the user’s account.
+
+Possible solutions include sending the QR code by email (actually, some users are always logged into their email accounts as well, so this might be meaningless except for the fact that the QR code will not be available from the attacker’s JS) and prompting the user for their password before displaying the QR code (it is still much easier to type the password on a desktop/laptop computer’s keyboard rather than type the site address + login or email + password on a mobile device’s virtual keyboard).
+
+Of course, even if you implement such protection, you should still carefully check your website for XSS (and other vulnerabilities, such as SQL injections, CSRF, etc), set the session ID cookies with the [HttpOnly](http://en.wikipedia.org/wiki/HTTP_cookie#HttpOnly_cookie) flag and so on. For instance, it would be even worse to accidentally let an attacker know the user’s password (if the user is prompted for the password on a page with some attacker’s JS) than just let them obtain a new session (which only means access to the account, without the password being exposed).
+
+The general rule here is “think before you do”. Features can be both handy and secure.
+
 A note on HTTP/HTTPS
-====================
+--------------------
 
 If your web server is behind a reverse proxy (like nginx) and you use SSL for your website, please make sure that the upstream (the web server that you use to run your Django website) is being informed about that, so request.is_secure() will act correctly (so the authentication URLs will have correct scheme). You can do that by adding the [SECURE_PROXY_SSL_HEADER](https://docs.djangoproject.com/en/dev/ref/settings/#secure-proxy-ssl-header) setting and supplying the corresponding header from the reverse proxy (but don’t forget to _always_ set or strip this header, in all the requests the reverse proxy sends to the upstream: otherwise, say, if your website is available via both HTTP and HTTPS, then a user who opens the website via HTTP will be able to set this header at the client side, so request.is_secure() will return True, which is not good from the point of security).
