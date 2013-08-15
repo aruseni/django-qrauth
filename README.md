@@ -94,7 +94,7 @@ Also, make sure that [LOGIN_URL](https://docs.djangoproject.com/en/dev/ref/setti
 How to test
 ===========
 
-If you want to test this locally, make sure that your local web server is available from your mobile device. For example, if your computer and your mobile device are both connected to the same LAN, you should specify your LAN IP address (something like 192.168.0.5:8000 or 0.0.0.0:8000 if you want the web server to listen on all network interfaces) so the web server will listen on this address.
+If you want to test this locally, make sure that your local web server is available from your mobile device. For example, if your computer and your mobile device are both connected to the same LAN, you should specify your LAN IP address (something like 192.168.0.5:8000 or 0.0.0.0:8000 if you want the web server to listen on all network interfaces) in order to make the web server listen on this address.
 
 If you use [the “sites” framework](https://docs.djangoproject.com/en/dev/ref/contrib/sites/) (django.contrib.sites), make sure you have correcly set the domain for the current site.
 
