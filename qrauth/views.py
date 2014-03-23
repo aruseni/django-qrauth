@@ -79,7 +79,7 @@ def qr_code_picture(request, auth_code, r=None):
     ])
 
     img = make_qr_code(login_link)
-    response = HttpResponse(mimetype="image/png")
+    response = HttpResponse(content_type="image/png")
     img.save(response, "PNG")
     return response
 
