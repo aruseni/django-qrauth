@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='django-qrauth',
-    version='0.1.1',
+    version='0.1.2',
     author='aruseni',
     author_email='aruseni.magiku@gmail.com',
     packages=['qrauth'],
