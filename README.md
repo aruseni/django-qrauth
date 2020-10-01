@@ -117,7 +117,7 @@ Possible solutions include sending the QR code by email (actually, some users ar
 
 Of course, even if you implement such protection, you should still carefully check your website for XSS (and other vulnerabilities, such as SQL injections, CSRF, etc), set the session ID cookies with the [HttpOnly](http://en.wikipedia.org/wiki/HTTP_cookie#HttpOnly_cookie) flag and so on. For instance, it would be even worse to accidentally let an attacker know the user’s password (if the user is prompted for the password on a page with some attacker’s JS) than just let them obtain a new session (which only means access to the account, without the password being exposed).
 
-The general rule here is “think before you do”. Features can be both handy and secure.
+The general rule here is to “think before you do” as the features can be both handy and secure.
 
 A note on HTTP/HTTPS
 --------------------
