@@ -1,4 +1,4 @@
-Django==1.6.2
+Django==2.2.24
 PIL==1.1.7
 argparse==1.2.1
 django-qrauth==0.1.1
