@@ -12,7 +12,7 @@ setup(
     license='BSD licence, see LICENCE.md',
     description=('Nice QR codes that allow the users to instantly'
                  ' sign in to the website on their mobile devices'),
-    long_description=open('README.md').read()[:-1],
+    long_description=open('README.md').read()[0:],
     zip_safe=False,
     install_requires=['qrcode', 'redis', 'PIL'],
 )
